@@ -13,6 +13,6 @@
 }
 
 .monster {
-    background-image: url("./img/goblin.png");
+    background-image: url("../img/goblin.png");
     background-size: 100px 100px;
 }
