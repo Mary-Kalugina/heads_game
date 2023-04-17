@@ -1,24 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const cells = document.querySelectorAll(".cell");
   let oldCell;
+  let cells;
 
   window.onload = () => {
-    oldCell = cells[Math.floor(Math.random() * 15)];
-    oldCell.classList.add("monster");
+    renderBoard();
+    oldCell = randomCell();
+    addMonster(oldCell);
     setInterval(changeCell, 1000);
   };
 
+
+
+  function renderBoard() {
+    document.querySelector(".container").insertAdjacentHTML("afterbegin", `<div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>`)
+  }
+
+  function randomCell() {
+    cells = document.querySelectorAll(".cell");
+    return cells[Math.floor(Math.random() * 15)];
+  }
+
   function changeCell() {
-    let generatedCell = cells[Math.floor(Math.random() * 15)];
+    let generatedCell = randomCell();
     if (generatedCell === oldCell) {
-      generatedCell = cells[Math.floor(Math.random() * 15)];
+      generatedCell = randomCell();
     }
     removeMonster(oldCell);
-    putMonster(generatedCell);
+    addMonster(generatedCell);
     oldCell = generatedCell;
   }
 
-  function putMonster(cell) {
+  function addMonster(cell) {
     cell.classList.add("monster");
   }
 
