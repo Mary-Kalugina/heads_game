@@ -12,7 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   function renderBoard() {
-    document.querySelector(".container").insertAdjacentHTML("afterbegin", `<div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>`)
+    const container = document.querySelector(".container");
+    for (let i = 0; i < 16; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add("cell");
+        container.appendChild(cell);
+    }
   }
 
   function randomCell() {
