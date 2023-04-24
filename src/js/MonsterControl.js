@@ -1,5 +1,10 @@
-import { container, oldCell, countMonster, oldCellControl, setCountMonster } from "../index";
- 
+import {
+  container,
+  countMonster,
+  oldCellControl,
+  setCountMonster,
+} from "../index";
+
 export default class MonsterControl {
   constructor() {
     this.randomCell = this.randomCell.bind(this);
@@ -8,13 +13,13 @@ export default class MonsterControl {
 
   renderBoard() {
     for (let i = 0; i < 16; i++) {
-        const cell = document.createElement('div');
-        cell.classList.add("cell");
-        container.appendChild(cell);
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      container.appendChild(cell);
     }
   }
 
-   randomCell() {
+  randomCell() {
     const cells = document.querySelectorAll(".cell");
     const randomCell = cells[Math.floor(Math.random() * 15)];
     return randomCell;
@@ -30,7 +35,6 @@ export default class MonsterControl {
     this.countMonsters();
     oldCellControl.oldCell = generatedCell;
   }
-  
 
   addMonster(cell) {
     cell.classList.add("monster");
@@ -38,6 +42,9 @@ export default class MonsterControl {
 
   removeMonster() {
     const cell = document.querySelector(".monster");
+    if (!cell) {
+      return;
+    }
     cell.classList.remove("monster");
   }
 
@@ -45,9 +52,8 @@ export default class MonsterControl {
     setCountMonster(countMonster + 1);
     if (countMonster === 5) {
       setCountMonster(0);
-      alert("Game is over!"); 
+      alert("Game is over!");
       location.reload();
     }
   }
 }
-

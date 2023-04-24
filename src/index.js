@@ -12,31 +12,30 @@ export const oldCellControl = {
   },
   get oldCell() {
     return this._oldCell;
-  }
+  },
 };
-export const scoreControl = {  
+export const scoreControl = {
   get score() {
     return this._score;
   },
   set score(value) {
     this._score = value;
-  }
-}
+  },
+};
 export let countMonster = 0;
 export function setCountMonster(value) {
   countMonster = value;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    window.onload = () => {
-      const monsterControl = new MonsterControl();
-      
-      monsterControl.renderBoard();
-      oldCellControl.oldCell = monsterControl.randomCell();
-      monsterControl.addMonster(oldCellControl.oldCell);
-      setInterval(monsterControl.changeCell, 1000);
-    };
+  const monsterControl = new MonsterControl();
+  const goblin = new InteractiveGoblin();
+  window.onload = () => {
+    monsterControl.renderBoard();
+    oldCellControl.oldCell = monsterControl.randomCell();
+    monsterControl.addMonster(oldCellControl.oldCell);
+    goblin.startTimer();
+  };
 
-    const goblin = new InteractiveGoblin();
-    container.addEventListener("click", (e) => goblin.monsterHit(e));
+  container.addEventListener("click", (e) => goblin.monsterHit(e));
 });
